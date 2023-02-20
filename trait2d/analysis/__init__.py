@@ -766,7 +766,7 @@ class Track:
         return cls(dict["x"], dict["y"], dict["t"])
 
     @classmethod
-    def from_dataframe(cls, df, col_name_x='x', col_name_y='y', col_name_t='t', col_name_id='id', unit_length='metres', unit_time='seconds', id=None):
+    def from_dataframe(cls, df, col_name_x='x', col_name_y='y', col_name_z='z', col_name_t='t', col_name_id='id', unit_length='metres', unit_time='seconds', id=None):
         """Create a single track from a DataFrame. Currently only supports '.csv' tracks.
         The DataFrame must contain the fields 'x', 'y', 't' as well as 'id'. Different column names can also be
         specified using the appropriate arguments.
@@ -885,7 +885,7 @@ class Track:
             raise ValueError("Unknown format: {}".format(format))
         if format == "csv":
             df = pd.read_csv(filename)
-            return cls.from_dataframe(df, col_name_x, col_name_y, col_name_t, col_name_id, unit_length, unit_time, id)
+            return cls.from_dataframe(df, col_name_x, col_name_y, '', col_name_t, col_name_id, unit_length, unit_time, id)
         elif format == "json":
             # TODO: .json-specific import
             raise NotImplementedError(
